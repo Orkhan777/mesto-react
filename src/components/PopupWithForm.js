@@ -1,7 +1,7 @@
 function PopupWithForm(props) {
-  const { name, title, btnText, children, isOpen, onClose } = props;
+  const { name, title, btnText, children, isOpen, onClose, onSubmit } = props;
 
-  const popupClass = isOpen ? "popup popup_opened" : "popup";
+  const popupClass = isOpen ? ("popup popup_opened") : ("popup");
 
   return (
     <div className={popupClass}>
@@ -12,6 +12,7 @@ function PopupWithForm(props) {
           noValidate
           method="post"
           className={`popup__form popup__${name}`}
+          onSubmit={onSubmit}
         >
           {children}
           <button className="popup__save-button" type="submit">

@@ -1,8 +1,25 @@
 function Card(props) {
-  const { card, onCardClick } = props;
+  const { card, onCardClick, currentUser, onCardLike, onCardDelete } = props;
 
   function handleCardClick() {
     onCardClick(card);
+  }
+
+  const isOwner = card.owner._id === currentUser._id;
+  const isLiked = card.likes.some((i) => i._id === currentUser._id);
+
+  const cardLikeButtonClassName = (
+    `card__button-like ${isLiked && "card__button-like_active"}`);
+
+  const cardDeleteButtonClassName = (
+    `button-remove ${isOwner && "button-remove_show"}`);
+
+  function handleLike() {
+    onCardLike(card);
+  }
+
+  function handleDeleteClick() {
+    onCardDelete(card);
   }
 
   return (
@@ -16,11 +33,19 @@ function Card(props) {
       <div className="card__text">
         <h2 className="card__title">{card.name}</h2>
         <div className="card__info-like">
-          <button className="card__button-like" type="button" />
+          <button
+            className={cardLikeButtonClassName}
+            onClick={handleLike}
+            type="button"
+          />
           <span className="card__like-score">{card.likes.length}</span>
         </div>
       </div>
-      <button className="button-remove" type="button" />
+      <button
+        className={cardDeleteButtonClassName}
+        onClick={handleDeleteClick}
+        type="button"
+      />
     </article>
   );
 }

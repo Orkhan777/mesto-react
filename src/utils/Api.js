@@ -13,16 +13,20 @@ class Api {
         Promise.reject(res.status);
       }
     }
+
+    _request(urlEndpoint, options) {
+      return fetch(`${this._url}${urlEndpoint}`, options)
+      .then(this._checkResponse)
+    }
   
     getUserInfo() {
-      return fetch(`${this._url}/users/me`, {
+      return this._request(`/users/me`, {
         headers: this._headers,
       })
-      .then(this._checkResponse);
     }
   
     patchUserInfo(data) {
-      return fetch(`${this._url}/users/me`, {
+      return this._request(`/users/me`, {
         method: 'PATCH',
         headers: this._headers,
         body: JSON.stringify({
@@ -30,58 +34,51 @@ class Api {
           about: data.about
         }),
     })
-    .then(this._checkResponse)
   }
   
   getArrCards () {
-    return fetch(`${this._url}/cards`, {
+    return this._request(`/cards`, {
       headers: this._headers,
   })
-  .then(this._checkResponse);
   }
   
   postUserCard (data) {
-    return fetch(`${this._url}/cards`, {
+    return this._request(`/cards`, {
       method: 'POST',
       headers: this._headers,
       body: JSON.stringify(
         data,
       )
   })
-  .then(this._checkResponse);
   }
   
   deleteCard (cardId) {
-    return fetch (`${this._url}/cards/${cardId}`, {
+    return this._request (`/cards/${cardId}`, {
       method: 'DELETE',
       headers: this._headers,
   })
-  .then(this._checkResponse);
   }
   
   patchAvatar(avatar) {
-    return fetch(`${this._url}/users/me/avatar`, {
+    return this._request(`/users/me/avatar`, {
       method: 'PATCH',
       headers: this._headers,
       body: JSON.stringify( avatar ),
     })
-    .then(this._checkResponse);
   }
   
   putLike (cardId) {
-    return fetch(`${this._url}/cards/${cardId}/likes`, {
+    return this._request(`/cards/${cardId}/likes`, {
       method: "PUT",
       headers: this._headers,
     })
-    .then(this._checkResponse)
   }
   
   deleteLike (cardId) {
-    return fetch(`${this._url}/cards/${cardId}/likes`, {
+    return this._request(`/cards/${cardId}/likes`, {
       method: 'DELETE',
       headers: this._headers,
     })
-    .then(this._checkResponse);
   }
   }
 
