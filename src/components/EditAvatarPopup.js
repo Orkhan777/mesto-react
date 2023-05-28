@@ -13,6 +13,13 @@ function EditAvatarPopup(props) {
     });
   }
 
+  // очистка поля ввода при закрытии окна
+  React.useEffect(() => {
+    if (!isOpen) {
+      ref.current.value = "";
+    }
+  }, [isOpen]);
+
   return (
     <PopupWithForm
       name="avatar"

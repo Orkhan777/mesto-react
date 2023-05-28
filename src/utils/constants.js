@@ -1,3 +1,4 @@
+/*
 const popupProfileOpenButton = document.querySelector(".profile__edit-button");
 
 const popupProfileName = document.getElementById("name");
@@ -31,7 +32,7 @@ const formValidation = {
   templiteSelector: "#card__template",
   popupAddAvatar: "#add-avatar-popup",
 };
-
+*/
 
 const apiSetting = {
   url: 'https://mesto.nomoreparties.co/v1/cohort-64',
@@ -41,4 +42,4 @@ const apiSetting = {
   },
 };
 
-export {popupProfileOpenButton, popupProfileName, popupProfileJob, formAddProfilePopup, popupPlaceName, imageLinkPopup, formAddPlacePopup, popupProfileAddButton, cards, editAvatar, avatarImg, formValidation, apiSetting };
+export { apiSetting };

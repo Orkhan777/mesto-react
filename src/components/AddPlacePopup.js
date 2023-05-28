@@ -20,6 +20,12 @@ function AddPlacePopup(props) {
     onAddPlace({ name, link });
   }
 
+  // очистка поля ввода при закрытии окна
+  React.useEffect(() => {
+    setName('');
+    setLink('');
+  }, [isOpen]);
+
   return (
     <PopupWithForm
       name="add-card"
